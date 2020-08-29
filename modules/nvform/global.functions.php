@@ -14,7 +14,13 @@ function nv_form_result($question_data, $answer_data)
 {
     global $lang_module, $global_config, $module_info, $module_name, $module_data, $module_file, $user_info;
     
-    $xtpl = new XTemplate('view_answer.tpl', NV_ROOTDIR . '/themes/' . $global_config['site_theme'] . '/modules/' . $module_file);
+    if (file_exists(NV_ROOTDIR . '/themes/' . $global_config['site_theme'] . '/modules/' . $module_file . '/view_answer.tpl')) {
+        $template = $global_config['site_theme'];
+    } else {
+        $template = 'default';
+    }
+    
+    $xtpl = new XTemplate('view_answer.tpl', NV_ROOTDIR . '/themes/' . $template . '/modules/' . $module_file);
     $xtpl->assign('LANG', $lang_module);
     
     if (! empty($question_data)) {

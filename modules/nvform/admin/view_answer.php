@@ -9,7 +9,6 @@
  */
 if (! defined('NV_IS_FILE_ADMIN'))
     die('Stop!!!');
-
 $id = $nv_Request->get_int('id', 'get', 0);
 
 $answer_data = $db->query('SELECT t1.*, t2.username, t2.last_name, t2.first_name FROM ' . NV_PREFIXLANG . '_' . $module_data . '_answer t1 LEFT JOIN ' . NV_USERS_GLOBALTABLE . ' t2 ON t1.who_answer = t2.userid WHERE t1.id = ' . $id)->fetch();
